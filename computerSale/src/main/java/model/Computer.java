@@ -52,7 +52,7 @@ public class Computer implements  Comparable<Computer> {
 
     @Override
     public int compareTo(Computer o){
-        return 0;
+        return this.brand.compareTo(o.brand);
     }
 
 
