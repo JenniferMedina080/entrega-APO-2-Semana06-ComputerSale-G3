@@ -1,17 +1,38 @@
 package ui;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import model.Computer;
+import model.ComputerSale;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+public class Main {
+
+    public static void printArray(Computer[] cs) {
+        for (Computer c : cs) {
+            System.out.println(c);
         }
+    }
+
+    public static void main(String[] args) {
+        Computer[] computers = ComputerSale.generateRandomComputers(100);
+        ComputerSale sale = new ComputerSale(computers);
+
+        sale.sortByBrand();
+        System.out.println("Por Brand ");
+        printArray(sale.getComputers());
+
+        sale.sortByProcessing();
+        System.out.println("Por Procesamiento");
+        printArray(sale.getComputers());
+
+        sale.sortByBrandAndOS();
+        System.out.println("Por Brand y OS ");
+        printArray(sale.getComputers());
+
+        sale.sortByRam();
+        System.out.println(" Por RAM ");
+        printArray(sale.getComputers());
+
+        sale.sortByBrandReverse();
+        System.out.println("Por Brand Inversp ");
+        printArray(sale.getComputers());
     }
 }

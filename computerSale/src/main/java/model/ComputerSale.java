@@ -1,6 +1,8 @@
 package model;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Random;
 
 public class ComputerSale {
     private Computer[] computer;
@@ -48,13 +50,35 @@ public class ComputerSale {
     }
 
     public void sortByRam() {
+        Arrays.sort(computer, new Comparator<Computer>() {
+            @Override
+            public int compare(Computer c1, Computer c2) {
+                return Integer.compare(c1.getRam(), c2.getRam());
+            }
+        });
     }
 
     public void sortByBrandReverse() {
+        Arrays.sort(computer, Comparator.reverseOrder());
     }
 
     // Generar arreglo de computadores aleatorios
     public static Computer[] generateRandomComputers(int c) {
-        return null;
+        Random rand = new Random();
+        Computer[] computers = new Computer[c];
+
+        String[] marcas = {"Apple", "Dell", "HP", "Lenovo"};
+        char[] sistemas = {'W', 'M', 'L'};
+
+        for (int i = 0; i < c; i++) {
+            String brand = marcas[rand.nextInt(4)];
+            int ram = rand.nextInt(32) + 1;
+            int processors = rand.nextInt(8) + 1;
+            double processingSpeed = rand.nextInt(5) + 1;
+            char operatingSystem = sistemas[rand.nextInt(3)];
+
+            computers[i] = new Computer(brand, ram, processors, processingSpeed, operatingSystem);
+        }
+        return computers;
     }
 }
